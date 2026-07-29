@@ -10,8 +10,8 @@ import SearchIcon from "@mui/icons-material/Search";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { Typography } from "@mui/material";
 import { NavLink } from "react-router";
-import { useContext } from "react";
-import UserContext from "../../Contexts/Cart/UserContext";
+import { useDispatch, useSelector } from "react-redux";
+import { setSearch } from "../../features/SearchSlice/SearchSlice";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -46,6 +46,14 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 function Header({ setShowSide }) {
+  const dispatch = useDispatch()
+  const itemsInCart = useSelector((state) => state.cart.items);
+  const search = useSelector((state) => state.search.textSearch);
+  const handelSearch = (e )=> {
+    dispatch(setSearch(e.target.value))
+  }
+  
+
   const NavHeader = [
     { path: "/", name: "Home" },
     { path: "/menu", name: "Menu" },
@@ -53,7 +61,7 @@ function Header({ setShowSide }) {
     { path: "/contact", name: "Contact" },
   ];
   const theme = useTheme();
-  const { incrementCart } = useContext(UserContext);
+  // const { incrementCart } = useContext(UserContext);
   return (
     <AppBar position="fixed" color="secondary">
       <Container maxWidth="xl">
@@ -80,7 +88,7 @@ function Header({ setShowSide }) {
                   fontSize: "12px",
                 }}
               >
-                {incrementCart}
+                {itemsInCart.length}
               </Typography>
               <ShoppingCartIcon
                 onClick={() => setShowSide((pre) => !pre)}
@@ -113,6 +121,8 @@ function Header({ setShowSide }) {
                 <SearchIcon />
               </SearchIconWrapper>
               <StyledInputBase
+                onChange={handelSearch}
+                value= {search}
                 placeholder="Search…"
                 inputProps={{ "aria-label": "search" }}
               />

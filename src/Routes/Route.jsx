@@ -10,6 +10,7 @@ import authMiddleware from "../Middleware/authMiddleware";
 import Login from "../Pages/Login/Login";
 import Register from "../Pages/Register/Register";
 import Home from "../Pages/Home/Home";
+import Cart from "../Pages/Cart/Cart";
 
 const Route = createBrowserRouter([
   {
@@ -48,6 +49,10 @@ const Route = createBrowserRouter([
           {
             path: "contact",
             Component: ContactUs,
+          },
+          {
+            path: "cart",
+            Component: Cart,
           }
         ],
       },
