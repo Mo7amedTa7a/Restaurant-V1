@@ -6,8 +6,6 @@ import { ThemeProvider  } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import theme from "./Theme/Theme.jsx";
 
-
-
 createRoot(document.getElementById("root")).render(
   <ThemeProvider  theme={theme}>
       <CssBaseline />
