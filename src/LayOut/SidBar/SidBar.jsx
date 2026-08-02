@@ -1,12 +1,14 @@
 import Box from "@mui/material/Box";
 import { CardContent, Typography, Card, Button } from "@mui/material";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router";
+import { decItem, incItem } from "../../features/cartSlice/cartSlice";
 
 export default function SidBar() {
   // const { showItemCart } = useContext(UserContext);
-  const items = useSelector((state) => state.cart.items);
+  const {items} = useSelector((state) => state.cart);
+  const dispatch = useDispatch()
   const isEmpty = items.length == 0;
   return (
     <>
@@ -104,10 +106,11 @@ export default function SidBar() {
                       fontSize: "26px",
                       background: "none",
                     }}
+                    onClick={()=> dispatch(decItem(prod.id))}
                   >
                     -
                   </Button>
-                  <Typography variant="body2">0</Typography>
+                  <Typography variant="body2">{prod.quantity}</Typography>
                   <Button
                     sx={{
                       height: 8,
@@ -115,6 +118,7 @@ export default function SidBar() {
                       fontSize: "20px",
                       background: "none",
                     }}
+                    onClick={()=> dispatch(incItem(prod.id))}
                   >
                     +
                   </Button>

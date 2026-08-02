@@ -2,6 +2,8 @@ import { Box, Button, InputBase } from "@mui/material";
 import Carousel from "react-bootstrap/Carousel";
 import SearchIcon from "@mui/icons-material/Search";
 import styled from "@emotion/styled";
+import { useEffect } from "react";
+import api from "../../services";
 
 const imgArr = [
   "https://images.unsplash.com/photo-1589926200324-7129d6a43c80?fm=jpg&q=60&w=3000&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -37,6 +39,16 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 function Home() {
+  
+  useEffect(() => {
+    const getProducts = async () => {
+      const data = await api.GetAllCarts();
+
+      console.log(data);
+    };
+
+    getProducts();
+  }, []);
   return (
     <Box
       style={{

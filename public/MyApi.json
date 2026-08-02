@@ -56,7 +56,8 @@
       "available": true,
       "rating": 4.8,
       "discount": 0,
-      "preparationTime": "10 min"
+      "preparationTime": "10 min",
+      "quantity":1
     },
     {
       "id": 2,
@@ -68,7 +69,8 @@
       "available": true,
       "rating": 4.9,
       "discount": 10,
-      "preparationTime": "12 min"
+      "preparationTime": "12 min",
+      "quantity":1
     },
     {
       "id": 3,
@@ -80,7 +82,8 @@
       "available": true,
       "rating": 4.7,
       "discount": 0,
-      "preparationTime": "12 min"
+      "preparationTime": "12 min",
+      "quantity":1
     },
     {
       "id": 4,
@@ -92,7 +95,8 @@
       "available": true,
       "rating": 4.6,
       "discount": 5,
-      "preparationTime": "8 min"
+      "preparationTime": "8 min",
+      "quantity":1
     },
 
     {
@@ -105,7 +109,8 @@
       "available": true,
       "rating": 4.8,
       "discount": 0,
-      "preparationTime": "15 min"
+      "preparationTime": "15 min",
+      "quantity":1
     },
     {
       "id": 6,
@@ -117,7 +122,8 @@
       "available": true,
       "rating": 4.9,
       "discount": 15,
-      "preparationTime": "15 min"
+      "preparationTime": "15 min",
+      "quantity":1
     },
     {
       "id": 7,
@@ -129,7 +135,8 @@
       "available": true,
       "rating": 4.8,
       "discount": 0,
-      "preparationTime": "16 min"
+      "preparationTime": "16 min",
+      "quantity":1
     },
     {
       "id": 8,
@@ -141,7 +148,8 @@
       "available": true,
       "rating": 4.7,
       "discount": 0,
-      "preparationTime": "10 min"
+      "preparationTime": "10 min",
+      "quantity":1
     },
 
     {
@@ -154,7 +162,8 @@
       "available": true,
       "rating": 4.9,
       "discount": 20,
-      "preparationTime": "20 min"
+      "preparationTime": "20 min",
+      "quantity":1
     },
     {
       "id": 10,
@@ -166,7 +175,8 @@
       "available": true,
       "rating": 4.8,
       "discount": 0,
-      "preparationTime": "20 min"
+      "preparationTime": "20 min",
+      "quantity":1
     },
     {
       "id": 11,
@@ -178,7 +188,8 @@
       "available": true,
       "rating": 4.9,
       "discount": 10,
-      "preparationTime": "22 min"
+      "preparationTime": "22 min",
+      "quantity":1
     },
     {
       "id": 12,
@@ -190,7 +201,8 @@
       "available": true,
       "rating": 4.6,
       "discount": 0,
-      "preparationTime": "18 min"
+      "preparationTime": "18 min",
+      "quantity":1
     },
 
     {
@@ -203,7 +215,8 @@
       "available": true,
       "rating": 4.7,
       "discount": 15,
-      "preparationTime": "15 min"
+      "preparationTime": "15 min",
+      "quantity":1
     },
     {
       "id": 14,
@@ -215,7 +228,8 @@
       "available": true,
       "rating": 4.9,
       "discount": 30,
-      "preparationTime": "20 min"
+      "preparationTime": "20 min",
+      "quantity":1
     },
     {
       "id": 15,
@@ -227,7 +241,8 @@
       "available": true,
       "rating": 5,
       "discount": 50,
-      "preparationTime": "30 min"
+      "preparationTime": "30 min",
+      "quantity":1
     },
     {
       "id": 16,
@@ -239,7 +254,8 @@
       "available": true,
       "rating": 4.8,
       "discount": 40,
-      "preparationTime": "25 min"
+      "preparationTime": "25 min",
+      "quantity":1
     },
 
     {
@@ -252,7 +268,8 @@
       "available": true,
       "rating": 4.5,
       "discount": 0,
-      "preparationTime": "2 min"
+      "preparationTime": "2 min",
+      "quantity":1
     },
     {
       "id": 18,
@@ -264,7 +281,8 @@
       "available": true,
       "rating": 4.4,
       "discount": 0,
-      "preparationTime": "1 min"
+      "preparationTime": "1 min",
+      "quantity":1
     },
     {
       "id": 19,
@@ -276,7 +294,8 @@
       "available": true,
       "rating": 4.6,
       "discount": 0,
-      "preparationTime": "5 min"
+      "preparationTime": "5 min",
+      "quantity":1
     },
     {
       "id": 20,
@@ -288,7 +307,8 @@
       "available": true,
       "rating": 4.5,
       "discount": 0,
-      "preparationTime": "1 min"
+      "preparationTime": "1 min",
+      "quantity":1
     }
   ]
 }

@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  items: JSON.parse(localStorage.getItem("ProductsInCart"))||[],
+  items: JSON.parse(localStorage.getItem("ProductsInCart")) || [],
 };
 
 const cartSlice = createSlice({
@@ -9,7 +9,7 @@ const cartSlice = createSlice({
   initialState,
   reducers: {
     addToCart: (state, action) => {
-    //   console.log("Add To Cart", state, " : ", action);
+      //   console.log("Add To Cart", state, " : ", action);
 
       const exist = state.items.find((item) => item.id == action.payload.id);
       if (!exist) {
@@ -19,16 +19,27 @@ const cartSlice = createSlice({
     },
 
     removeCart: (state, action) => {
-    //   console.log("remove Cart", state, " : ", action);
-        state.items = state.items.filter((item) => item.id !== action.payload.id);
-        localStorage.setItem("ProductsInCart", JSON.stringify(state.items));
+      //   console.log("remove Cart", state, " : ", action);
+      state.items = state.items.filter((item) => item.id !== action.payload.id);
+      localStorage.setItem("ProductsInCart", JSON.stringify(state.items));
     },
 
-    incItem: () => {
-      console.log("incItem");
+    incItem: (state, action) => {
+      const product = state.items.find((item) => item.id === action.payload);
+      if (product) {
+        product.quantity++;
+      }
+      localStorage.setItem("ProductsInCart", JSON.stringify(state.items));
     },
-    decItem: () => {
-      console.log("decItem");
+    decItem: (state , action) => {
+      const product = state.items.find((item)=> item.id === action.payload)
+      if(!product) return
+      if(product.quantity > 1){
+        product.quantity--;
+      }else{
+        state.items = state.items.filter((item)=> item.id !== action.payload)
+      }
+      localStorage.setItem("ProductsInCart", JSON.stringify(state.items))
     },
   },
 });
