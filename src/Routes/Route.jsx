@@ -11,6 +11,8 @@ import Login from "../Pages/Login/Login";
 import Register from "../Pages/Register/Register";
 import Home from "../Pages/Home/Home";
 import Cart from "../Pages/Cart/Cart";
+import { ErrorBoundary } from "react-error-boundary";
+import { ErrorFillBack } from "../Components/MenuErrorBundary/MenuErrorBundary";
 
 const Route = createBrowserRouter([
   {
@@ -26,8 +28,11 @@ const Route = createBrowserRouter([
           },
           {
             path:"menu",
-            Component: Menu,
-           
+            element:(
+              <ErrorBoundary FallbackComponent={ErrorFillBack}>
+                <Menu/>
+              </ErrorBoundary>
+            )
           },
           {
             path: "productDetails/:id",

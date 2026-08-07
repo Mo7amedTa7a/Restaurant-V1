@@ -1,6 +1,5 @@
-import { useEffect, useState } from "react";
+import { lazy, useEffect, useState } from "react";
 import Box from "@mui/material/Box";
-import { useTheme } from "@mui/material/styles";
 import Card from "@mui/material/Card";
 import CardMedia from "@mui/material/CardMedia";
 import CardContent from "@mui/material/CardContent";
@@ -11,8 +10,15 @@ import { Link } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../../features/cartSlice/cartSlice";
 import { fetchProducts } from "../../apis/FetchProducts";
+// import ProductSkeleton from "../../Components/ProductSkeleton/ProductSkeleton";
+
+const ProductSkeleton = lazy(()=> import("../../Components/ProductSkeleton/ProductSkeleton"))
+
+
+
 function Menu() {
   const dispatch = useDispatch();
+  
   const cartProducts = useSelector((state) => state.cart.items);
   // console.log(products)
   const { items, categories, loading, error } = useSelector(
@@ -22,7 +28,7 @@ function Menu() {
 
   const search = useSelector((state) => state.search.textSearch);
 
-  const theme = useTheme();
+  // const theme = useTheme();
   // const [restaurant, setRestaurant] = useState(null);
   const [selectedCategory, setSelectedCategory] = useState("all");
   // const { setShowItemCart, setIncrementCart, showItemCart } =
@@ -40,7 +46,12 @@ function Menu() {
   // }, []);
 
   useEffect(() => {
-    dispatch(fetchProducts());
+    const promise = dispatch(fetchProducts());
+    return ()=>{
+      console.log("🛑 Aborting...");
+      promise.abort();
+    }
+
   }, [dispatch]);
 
   // Loading state
@@ -92,22 +103,45 @@ function Menu() {
     }
   };
 
-  if (loading) {
-    return (
-      <div
-        style={{
-          fontSize: "25px",
-          marginTop: "150px",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          color: theme.palette.primary.main,
-        }}
-      >
-        Loading ....
-      </div>
-    );
-  }
+  // if (loading) {
+  //   return (
+  //     <div
+  //       style={{
+  //         fontSize: "25px",
+  //         marginTop: "150px",
+  //         display: "flex",
+  //         alignItems: "center",
+  //         justifyContent: "center",
+  //         color: theme.palette.primary.main,
+  //       }}
+  //     >
+  //       Loading ....
+  //     </div>
+  //   );
+  // }
+
+ 
+if (loading) {
+  return (
+    <Box
+      sx={{
+        marginTop: "90px",
+        width: "100%",
+        display: "flex",
+        flexWrap: "wrap",
+        gap: "20px",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    >
+      {Array.from({ length: 6 }).map((_, index) => (
+        <ProductSkeleton key={index} />
+      ))}
+    </Box>
+  );
+}
+
+
   if (error) {
     return (
       <div
@@ -143,8 +177,8 @@ function Menu() {
     }
 
     return filteredProducts.map((prod) => {
+      // throw new Error("Test Error Boundary");
       const isAdded = cartProducts.some((p) => p.id === prod.id);
-
       return (
         <Card key={prod.name} sx={{ width: "300px", minHeight: "350px" }}>
           <CardMedia

@@ -2,6 +2,9 @@ import { Box, Button, InputBase } from "@mui/material";
 import Carousel from "react-bootstrap/Carousel";
 import SearchIcon from "@mui/icons-material/Search";
 import styled from "@emotion/styled";
+import SimpleSlider from "../../Components/SliderHome/SliderHome";
+import Player from "../../Components/RestaurantDetails/RestaurantDetails";
+import { SEO } from "../../Components/SEO/SEO.jsx";
 
 const imgArr = [
   "https://images.unsplash.com/photo-1589926200324-7129d6a43c80?fm=jpg&q=60&w=3000&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -37,7 +40,6 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 function Home() {
-  
   // useEffect(() => {
   //   const getProducts = async () => {
   //     const data = await api.GetAllCarts();
@@ -48,145 +50,163 @@ function Home() {
   //   getProducts();
   // }, []);
   return (
-    <Box
-      style={{
-        position:"relative",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        background: "#2445",
-      }}
-    >
-      <Box
-        sx={{
-          position: "absolute",
-          top: "60%",
-          left: "50%",
-          zIndex: 99,
-          transform: "translate(-50%, -50%)",
-        }}
-      >
-        <Search>
-          <SearchIconWrapper>
-            <SearchIcon />
-          </SearchIconWrapper>
-          <StyledInputBase
-            placeholder="Search…"
-            inputProps={{ "aria-label": "search" }}
-          />
-        </Search>
+    <>
+      <SEO
+        title="Best Restaurant in Assiut"
+        discription="Enjoy delicious fresh meals, pizza and burgers."
+        keyword="restaurant, pizza, burger"
+      />
+      <Box>
         <Box
-          sx={{
-            marginTop: "30px",
+          style={{
+            position: "relative",
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
+            background: "#2445",
           }}
         >
-          <Button
-            variant="outlined"
-            color="#fff"
+          <Box
             sx={{
-              marginInlineEnd: "30px",
-              height: 28,
-              p: 2.5,
-              fontSize: "16px",
-              color: "#fff",
+              position: "absolute",
+              top: "60%",
+              left: "50%",
+              zIndex: 99,
+              transform: "translate(-50%, -50%)",
             }}
           >
-            Order Now
-          </Button>
-          <Button
-            variant="contained"
-            sx={{
-              height: 28,
-              p: 2.5,
-              fontSize: "16px",
-              color: "#fff",
+            <Search>
+              <SearchIconWrapper>
+                <SearchIcon />
+              </SearchIconWrapper>
+              <StyledInputBase
+                placeholder="Search…"
+                inputProps={{ "aria-label": "search" }}
+              />
+            </Search>
+            <Box
+              sx={{
+                marginTop: "30px",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <Button
+                variant="outlined"
+                color="#fff"
+                sx={{
+                  marginInlineEnd: "30px",
+                  height: 28,
+                  p: 2.5,
+                  fontSize: "16px",
+                  color: "#fff",
+                }}
+              >
+                Order Now
+              </Button>
+              <Button
+                variant="contained"
+                sx={{
+                  height: 28,
+                  p: 2.5,
+                  fontSize: "16px",
+                  color: "#fff",
+                }}
+              >
+                Show Menu
+              </Button>
+            </Box>
+          </Box>
+          <Carousel
+            style={{
+              width: "100%",
+              height: "100vh",
+              paddingTop: "65px",
+              background: "#000",
             }}
           >
-            Show Menu
-          </Button>
+            <Carousel.Item>
+              <img
+                className="d-block w-100"
+                src={imgArr[0]}
+                alt="First slide"
+                style={{
+                  height: "calc(100vh - 65px)",
+                  objectFit: "cover",
+                  width: "100%",
+                  opacity: ".4",
+                }}
+              />
+              <Carousel.Caption
+                style={{
+                  top: "80px",
+                  bottom: "auto",
+                }}
+              >
+                <h3>First slide label</h3>
+                <p>
+                  Nulla vitae elit libero, a pharetra augue mollis interdum.
+                </p>
+              </Carousel.Caption>
+            </Carousel.Item>
+            <Carousel.Item>
+              <img
+                className="d-block w-100"
+                src={imgArr[1]}
+                alt="First slide"
+                style={{
+                  height: "calc(100vh - 65px)",
+                  objectFit: "cover",
+                  width: "100%",
+                  opacity: ".4",
+                }}
+              />
+              <Carousel.Caption
+                style={{
+                  top: "80px",
+                  bottom: "auto",
+                }}
+              >
+                <h3>Second slide label</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+              </Carousel.Caption>
+            </Carousel.Item>
+            <Carousel.Item>
+              <img
+                className="d-block w-100"
+                src={imgArr[2]}
+                alt="First slide"
+                style={{
+                  height: "calc(100vh - 65px)",
+                  objectFit: "cover",
+                  width: "100%",
+                  opacity: ".4",
+                }}
+              />
+              <Carousel.Caption
+                style={{
+                  top: "80px",
+                  bottom: "auto",
+                }}
+              >
+                <h3>Third slide label</h3>
+                <p>
+                  Praesent commodo cursus magna, vel scelerisque nisl
+                  consectetur.
+                </p>
+              </Carousel.Caption>
+            </Carousel.Item>
+          </Carousel>
+        </Box>
+        <Box>
+          <SimpleSlider />
+        </Box>
+        <Box>
+          <Player />
         </Box>
       </Box>
-      <Carousel
-        style={{
-          width: "100%",
-          height: "100vh",
-          paddingTop: "65px",
-          background: "#000",
-        }}
-      >
-        <Carousel.Item>
-          <img
-            className="d-block w-100"
-            src={imgArr[0]}
-            alt="First slide"
-            style={{
-              height: "calc(100vh - 65px)",
-              objectFit: "cover",
-              width: "100%",
-              opacity: ".4",
-            }}
-          />
-          <Carousel.Caption
-            style={{
-              top: "80px",
-              bottom: "auto",
-            }}
-          >
-            <h3>First slide label</h3>
-            <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-          </Carousel.Caption>
-        </Carousel.Item>
-        <Carousel.Item>
-          <img
-            className="d-block w-100"
-            src={imgArr[1]}
-            alt="First slide"
-            style={{
-              height: "calc(100vh - 65px)",
-              objectFit: "cover",
-              width: "100%",
-              opacity: ".4",
-            }}
-          />
-          <Carousel.Caption
-            style={{
-              top: "80px",
-              bottom: "auto",
-            }}
-          >
-            <h3>Second slide label</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-          </Carousel.Caption>
-        </Carousel.Item>
-        <Carousel.Item>
-          <img
-            className="d-block w-100"
-            src={imgArr[2]}
-            alt="First slide"
-            style={{
-              height: "calc(100vh - 65px)",
-              objectFit: "cover",
-              width: "100%",
-              opacity: ".4",
-            }}
-          />
-          <Carousel.Caption
-            style={{
-              top: "80px",
-              bottom: "auto",
-            }}
-          >
-            <h3>Third slide label</h3>
-            <p>
-              Praesent commodo cursus magna, vel scelerisque nisl consectetur.
-            </p>
-          </Carousel.Caption>
-        </Carousel.Item>
-      </Carousel>
-    </Box>
+    </>
   );
 }
 
