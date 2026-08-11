@@ -1,19 +1,22 @@
 import { createBrowserRouter } from "react-router";
-import LayOut from "../LayOut/LayOut";
-import About from "../Pages/About/About";
-import ContactUs from "../Pages/Contact/ContactUs";
-import NotFound from "../Pages/NotFound/NotFound";
-import Menu from "../Pages/Menu/Menu";
-import SecLayOut from "../LayOut/SecLayOut";
-import ProductDetail from "../Pages/ProductDetails/ProductDetail";
-import authMiddleware from "../Middleware/authMiddleware";
-import Login from "../Pages/Login/Login";
-import Register from "../Pages/Register/Register";
-import Home from "../Pages/Home/Home";
-import Cart from "../Pages/Cart/Cart";
 import { ErrorBoundary } from "react-error-boundary";
 import { ErrorFillBack } from "../Components/MenuErrorBundary/MenuErrorBundary";
+import { lazy } from "react";
+const LayOut = lazy(() => import("../LayOut/LayOut"));
+const About = lazy(() => import("../Pages/About/About"));
+const ContactUs = lazy(() => import("../Pages/Contact/ContactUs"));
+const NotFound = lazy(() => import("../Pages/NotFound/NotFound"));
+const SecLayOut = lazy(() => import("../LayOut/SecLayOut"));
+const ProductDetail = lazy(
+  () => import("../Pages/ProductDetails/ProductDetail"),
+);
+const authMiddleware = lazy(() => import("../Middleware/authMiddleware"));
+const Login = lazy(() => import("../Pages/Login/Login"));
 
+const Cart = lazy(() => import("../Pages/Cart/Cart"));
+const Menu = lazy(() => import("../Pages/Menu/Menu"));
+const Register = lazy(() => import("../Pages/Register/Register"));
+const Home = lazy(() => import("../Pages/Home/Home"));
 const Route = createBrowserRouter([
   {
     path: "/",
@@ -24,28 +27,24 @@ const Route = createBrowserRouter([
           {
             index: true,
             Component: Home,
-           
           },
           {
-            path:"menu",
-            element:(
+            path: "menu",
+            element: (
               <ErrorBoundary FallbackComponent={ErrorFillBack}>
-                <Menu/>
+                <Menu />
               </ErrorBoundary>
-            )
+            ),
           },
           {
             path: "productDetails/:id",
             Component: ProductDetail,
-             middleware:[authMiddleware],
+            middleware: [authMiddleware],
 
-            loader: async ()=>{
-              // for(var i = 0 ; i < 1000 ; i++){
-              //   console.log(i)
-              // }
-                console.log("Loader product Details")
-                return { message : "Loading......"};
-              }
+            loader: async () => {
+              console.log("Loader product Details");
+              return { message: "Loading......" };
+            },
           },
           {
             path: "about",
@@ -58,25 +57,25 @@ const Route = createBrowserRouter([
           {
             path: "cart",
             Component: Cart,
-          }
+          },
         ],
       },
       {
         Component: SecLayOut,
         children: [
           {
-            path:"login",
-            Component: Login
+            path: "login",
+            Component: Login,
           },
           {
-            path:"register",
-            Component:Register,
-            action: async ({request})=>{
-              const formData1 = await request.formData()
-              const data = Object.fromEntries(formData1.entries())
-              console.log("from router data" , data)
-              return data
-            }
+            path: "register",
+            Component: Register,
+            action: async ({ request }) => {
+              const formData1 = await request.formData();
+              const data = Object.fromEntries(formData1.entries());
+              console.log("from router data", data);
+              return data;
+            },
           },
           {
             path: "*",

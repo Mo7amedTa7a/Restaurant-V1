@@ -1,0 +1,119 @@
+.pageMenu {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.toggleButtonGroup {
+    width: fit-content;
+    margin-top: 90px;
+    border: 1px solid #cecbc860;
+    background: #fff;
+}
+
+.toggleButtonGroup :global(.MuiToggleButtonGroup-grouped) {
+    border: none;
+    border-radius: 8px;
+    padding-inline: 30px;
+}
+
+
+/* Tablet */
+@media (max-width: 768px) {
+  .toggleButtonGroup {
+    margin-top: 80px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .toggleButtonGroup {
+    margin-top: 80px;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+    justify-content: flex-start;
+  }
+
+  .toggleButtonGroup :global(.MuiToggleButtonGroup-grouped) {
+    flex: 0 0 auto;
+    white-space: nowrap;
+    padding: 8px 14px;
+    font-size: 13px;
+  }
+}
+
+.boxContainerProducts {
+    margin-top: 30px;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+}
+
+.boxLoading {
+    margin-top: 160px;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+}
+
+.boxError {
+    font-size: 25px;
+    margin-top: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgb(160, 11, 11);
+}
+
+.textNotFound {
+    width: 100%;
+    text-align: center;
+    margin-top: 100px;
+    color: rgb(124, 125, 126);
+    font-weight: bold;
+}
+
+.cardProduct {
+    width: 300px;
+    min-height: 350px
+}
+
+.textPrice {
+    padding-top: 10px;
+    font-weight: bold
+}
+
+.buttonsInCardProdect {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 10px;
+}
+
+.buttonInCard {
+    font-size: 13px;
+    border: 0;
+    color: #fff;
+    border-radius: 6px;
+    padding: 5px 15px;
+    background: #ff9d23;
+    cursor: pointer;
+}
+
+.buttonInCard.added {
+    background: #aca5a4;
+    cursor: revert;
+}
+
+.linkDeailsInCard {
+    text-decoration: none;
+    font-size: 13px;
+    color: #d87d0f;
+}

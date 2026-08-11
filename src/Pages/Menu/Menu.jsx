@@ -10,15 +10,16 @@ import { Link } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../../features/cartSlice/cartSlice";
 import { fetchProducts } from "../../apis/FetchProducts";
-// import ProductSkeleton from "../../Components/ProductSkeleton/ProductSkeleton";
 
-const ProductSkeleton = lazy(()=> import("../../Components/ProductSkeleton/ProductSkeleton"))
-
-
+const ProductSkeleton = lazy(
+  () => import("../../Components/ProductSkeleton/ProductSkeleton"),
+);
+// style
+import styles from "./Menu.module.css";
 
 function Menu() {
   const dispatch = useDispatch();
-  
+
   const cartProducts = useSelector((state) => state.cart.items);
   // console.log(products)
   const { items, categories, loading, error } = useSelector(
@@ -28,64 +29,15 @@ function Menu() {
 
   const search = useSelector((state) => state.search.textSearch);
 
-  // const theme = useTheme();
-  // const [restaurant, setRestaurant] = useState(null);
   const [selectedCategory, setSelectedCategory] = useState("all");
-  // const { setShowItemCart, setIncrementCart, showItemCart } =
-  //   useContext(UserContext);
-  // console.log(showItemCart)
-
-  // useEffect(() => {
-  //   FetchPromises()
-  //     .then((response) => {
-  //       setRestaurant(response);
-  //     })
-  //     .catch((err) => {
-  //       console.error("Error fetching data:", err);
-  //     });
-  // }, []);
 
   useEffect(() => {
     const promise = dispatch(fetchProducts());
-    return ()=>{
-      console.log("🛑 Aborting...");
+    return () => {
+      // console.log("🛑 Aborting...");
       promise.abort();
-    }
-
+    };
   }, [dispatch]);
-
-  // Loading state
-  // if (!restaurant) {
-  //   return (
-  //     <Typography
-  //       variant="h4"
-  //       sx={{
-  //         width: "100%",
-  //         textAlign: "center",
-  //         marginTop: "100px",
-  //         color: theme.palette.primary.main,
-  //       }}
-  //     >
-  //       Loading...
-  //     </Typography>
-  //   );
-  // }
-
-  // const AtlbElan = (item) => {
-  //   const exists = showItemCart.find((p) => p.id == item.id);
-
-  //   if (!exists) {
-  //     setShowItemCart((prev) => [...prev, item]);
-  //     setIncrementCart((count) => count + 1);
-  //   }
-  // };
-
-  // const filteredProducts =
-  //   selectedCategory === "all"
-  //     ? restaurant.products
-  //     : restaurant.products.filter(
-  //         (product) => product.categoryId === selectedCategory,
-  //       );
 
   const filteredProducts = items.filter((product) => {
     const categoryMatch =
@@ -103,74 +55,24 @@ function Menu() {
     }
   };
 
-  // if (loading) {
-  //   return (
-  //     <div
-  //       style={{
-  //         fontSize: "25px",
-  //         marginTop: "150px",
-  //         display: "flex",
-  //         alignItems: "center",
-  //         justifyContent: "center",
-  //         color: theme.palette.primary.main,
-  //       }}
-  //     >
-  //       Loading ....
-  //     </div>
-  //   );
-  // }
-
- 
-if (loading) {
-  return (
-    <Box
-      sx={{
-        marginTop: "90px",
-        width: "100%",
-        display: "flex",
-        flexWrap: "wrap",
-        gap: "20px",
-        alignItems: "center",
-        justifyContent: "center",
-      }}
-    >
-      {Array.from({ length: 6 }).map((_, index) => (
-        <ProductSkeleton key={index} />
-      ))}
-    </Box>
-  );
-}
-
+  if (loading) {
+    return (
+      <Box className={styles.boxLoading}>
+        {Array.from({ length: 6 }).map((_, index) => (
+          <ProductSkeleton key={index} />
+        ))}
+      </Box>
+    );
+  }
 
   if (error) {
-    return (
-      <div
-        style={{
-          fontSize: "25px",
-          marginTop: "150px",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          color: "rgb(160, 11, 11)",
-        }}
-      >
-        {error}
-      </div>
-    );
+    return <Box className={styles.boxError}>{error}</Box>;
   }
 
   const renderProducts = () => {
     if (filteredProducts.length === 0) {
       return (
-        <Typography
-          sx={{
-            width: "100%",
-            textAlign: "center",
-            marginTop: "100px",
-            color:"rgb(124, 125, 126)",
-            fontWeight:"bold"
-          }}
-        >
+        <Typography className={styles.textNotFound} sx={{}}>
           Product Not Found
         </Typography>
       );
@@ -180,7 +82,7 @@ if (loading) {
       // throw new Error("Test Error Boundary");
       const isAdded = cartProducts.some((p) => p.id === prod.id);
       return (
-        <Card key={prod.name} sx={{ width: "300px", minHeight: "350px" }}>
+        <Card key={prod.name} className={styles.cardProduct}>
           <CardMedia
             component="img"
             height="180px"
@@ -196,56 +98,18 @@ if (loading) {
               {prod.description.slice("11") + " ...."}
             </Typography>
 
-            <Typography
-              variant="h6"
-              sx={{ paddingTop: "10px", fontWeight: "bold" }}
-            >
+            <Typography variant="h6" className={styles.textPrice}>
               {prod.price} EGP
             </Typography>
-            <Box
-              sx={{
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "center",
-                paddingTop: "10px",
-              }}
-            >
-              {/* <button
-                  style={{
-                    fontSize: "13px",
-                    border: 0,
-                    background:isAdded? "#aca5a4":"#FF9D23",
-                    color: "#fff",
-                    cursor:isAdded?"revert":"pointer",
-                    borderRadius: "6px",
-                    padding: "5px 15px",
-                  }}
-                  onClick={() => AtlbElan(prod)}
-                >
-                  {isAdded
-                    ? "Added"
-                    : "Add to Cart"}
-                </button> */}
+            <Box className={styles.buttonsInCardProdect}>
               <button
-                style={{
-                  fontSize: "13px",
-                  border: 0,
-                  background: isAdded ? "#aca5a4" : "#FF9D23",
-                  color: "#fff",
-                  cursor: isAdded ? "revert" : "pointer",
-                  borderRadius: "6px",
-                  padding: "5px 15px",
-                }}
+                className={`${styles.buttonInCard} ${isAdded ? styles.added : ""}`}
                 onClick={() => dispatch(addToCart(prod))}
               >
                 {isAdded ? "Added" : "Add to Cart"}
               </button>
               <Link
-                style={{
-                  textDecoration: "none",
-                  fontSize: "13px",
-                  color: "#d87d0f",
-                }}
+                className={styles.linkDeailsInCard}
                 to={`/productDetails/${prod.id}`}
               >
                 Details →
@@ -256,44 +120,21 @@ if (loading) {
       );
     });
   };
+
   return (
     <>
-      <Box
-        sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}
-      >
+      <Box className={styles.pageMenu}>
         <ToggleButtonGroup
           color="primary"
           value={selectedCategory}
           exclusive
           onChange={handleChange}
           aria-label="Platform"
-          sx={{
-            width: "fit-content",
-            marginTop: "90px",
-            border: "1px solid #cecbc860",
-            backgroundColor: "#fff",
-            "& .MuiToggleButtonGroup-grouped": {
-              border: "none",
-              borderRadius: "8px",
-            },
-          }}
+          className={styles.toggleButtonGroup}
         >
-          <ToggleButton
-            sx={{ paddingInline: "30px", fontSize: "13px", fontWeight: "bold" }}
-            value="all"
-          >
-            All
-          </ToggleButton>
+          <ToggleButton value="all">All</ToggleButton>
           {categories.map((cat) => (
-            <ToggleButton
-              sx={{
-                paddingInline: "30px",
-                fontSize: "13px",
-                fontWeight: "bold",
-              }}
-              value={cat.id}
-              key={cat.id}
-            >
+            <ToggleButton value={cat.id} key={cat.id}>
               {cat.name}
             </ToggleButton>
           ))}
@@ -302,19 +143,7 @@ if (loading) {
       {/* Products */}
       {/* Products Container */}
 
-      <Box
-        sx={{
-          marginTop: "30px",
-          width: "100%",
-          display: "flex",
-          flexWrap: "wrap",
-          gap: "20px",
-          alignItems: "center",
-          justifyContent: "center",
-        }}
-      >
-        {renderProducts()}
-      </Box>
+      <Box className={styles.boxContainerProducts}>{renderProducts()}</Box>
     </>
   );
 }
