@@ -1,9 +1,25 @@
 import SliderModule from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { Box } from "@mui/material";
+import styles from "./SliderHome.module.css";
+
+import LocalOfferIcon from "@mui/icons-material/LocalOffer";
+import CardGiftcardIcon from "@mui/icons-material/CardGiftcard";
+import RestaurantMenuIcon from "@mui/icons-material/RestaurantMenu";
+import WhatshotIcon from "@mui/icons-material/Whatshot";
+import LocalShippingIcon from "@mui/icons-material/LocalShipping";
+import StarIcon from "@mui/icons-material/Star";
 
 const Slider = SliderModule.default ?? SliderModule;
+
+const offers = [
+  { text: "Today's Special", Icon: WhatshotIcon },
+  { text: "Free Delivery", Icon: LocalShippingIcon },
+  { text: "Chef's Choice", Icon: StarIcon },
+  { text: "Offer 60%", Icon: LocalOfferIcon },
+  { text: "First Order", Icon: CardGiftcardIcon },
+  { text: "New Menu", Icon: RestaurantMenuIcon },
+];
 
 export default function SimpleSlider() {
   const settings = {
@@ -13,107 +29,38 @@ export default function SimpleSlider() {
     autoplaySpeed: 2000,
     slidesToShow: 5,
     slidesToScroll: 1,
+    arrows: false,
+
+    responsive: [
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 3,
+        },
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 2,
+        },
+      },
+    ],
   };
 
   return (
-    <Box
-      sx={{
-        width: "100%",
-        overflow: "hidden",
-        background: "rgb(245, 163, 12)",
-      }}
-    >
+    <div className={styles.sliderContainer}>
+        <h2 className={styles.title}>services</h2>
       <Slider {...settings}>
-        <div>
-          <Box
-            sx={{
-              height: "40px",
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              background: "rgb(83, 58, 5)",
-              color:"#fff",
-            }}
-          >
-            <h6>⭐ Offer %60</h6>
-          </Box>
-        </div>
+        {offers.map(({ text, Icon }) => (
+          <div key={text} className={styles.slide}>
+            <div className={styles.offerItem}>
+              <Icon className={styles.offerIcon} />
 
-        <div>
-          <Box
-            sx={{
-              height: "40px",
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              background: "rgb(83, 58, 5)",
-              color:"#fff",
-            }}
-          >
-            <h6>🎁 First Order</h6>
-          </Box>
-        </div>
-
-        <div>
-          <Box
-            sx={{
-              height: "40px",
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              background: "rgb(83, 58, 5)",
-              color:"#fff",
-            }}
-          >
-            <h6>✨ New Menu</h6>
-          </Box>
-        </div>
-
-        <div>
-          <Box
-            sx={{
-              height: "40px",
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              background: "rgb(83, 58, 5)",
-              color:"#fff",
-            }}
-          >
-            <h6>🔥 Today's Special</h6>
-          </Box>
-        </div>
-
-        <div>
-          <Box
-            sx={{
-              height: "40px",
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              background: "rgb(83, 58, 5)",
-              color:"#fff",
-            }}
-          >
-            <h6>🚚 Free Delivery</h6>
-          </Box>
-        </div>
-
-        <div>
-          <Box
-            sx={{
-              height: "40px",
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              background: "rgb(83, 58, 5)",
-              color:"#fff",
-            }}
-          >
-            <h6>⭐ Chef's Choice</h6>
-          </Box>
-        </div>
+              <span className={styles.offerText}>{text}</span>
+            </div>
+          </div>
+        ))}
       </Slider>
-    </Box>
+    </div>
   );
 }

@@ -7,7 +7,7 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { NavLink, useLocation } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import { setSearch } from "../../features/SearchSlice/SearchSlice";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const NavHeader = [
   { path: "/", name: "Home" },
@@ -26,14 +26,40 @@ function Header({ setShowSide }) {
   const location = useLocation();
 
   const isMenuPage = location.pathname === "/menu";
+
+  const [isScrolled, setIsScrolled] = useState(false);
+  const isHome = location.pathname == "/";
+
   useEffect(() => {
-  setShowSide(false);
-}, [location.pathname, setShowSide]);
+    setShowSide(false);
+  }, [location.pathname, setShowSide]);
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+    };
+
+    if (isHome) {
+      handleScroll(); // عشان يتأكد من الحالة الحالية
+      window.addEventListener("scroll", handleScroll);
+    }
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [isHome]);
   return (
-    <div className={styles.appBar}>
+    <div
+      className={`${styles.appBar} ${
+        isHome
+          ? isScrolled
+            ? styles.scrolled
+            : styles.homeHeader
+          : styles.normalHeader
+      }`}
+    >
       <Box className={styles.boxLogoAndCart}>
         <a href="/">
-          <img src="/logo.png" alt="logo" width="80" />
+          <img src="/profile1.png" alt="logo" width="30" />
         </a>
 
         {isMenuPage && (

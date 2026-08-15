@@ -2,7 +2,7 @@
   "restaurant": {
     "id": 1,
     "name": "FOMO Fast Food",
-    "logo": "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=200&auto=format&fit=crop&q=80",
+    "logo": "/logo.png",
     "coverImage": "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=1200&auto=format&fit=crop&q=80",
     "rating": 4.9,
     "deliveryTime": "20-35 min",
@@ -17,10 +17,7 @@
     }
   ],
 
-  "phoneNumbers": [
-    "01123660182",
-    "01030442397"
-  ],
+  "phoneNumbers": ["01123660182", "01030442397"],
 
   "categories": [
     {
@@ -52,12 +49,12 @@
       "name": "Classic Pane",
       "description": "Crispy pane with fresh bread and special sauce",
       "price": 45,
-      "image": "https://images.unsplash.com/photo-1688084403060-3594a4b8ff8d?fm=jpg&q=60&w=3000&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "image": "https://images.unsplash.com/photo-1688084403060-3594a4b8ff8d?w=600&auto=format&fit=crop&q=80",
       "available": true,
-      "rating": 4.8,
+      "rating": 3.8,
       "discount": 0,
       "preparationTime": "10 min",
-      "quantity":1
+      "quantity": 1
     },
     {
       "id": 2,
@@ -70,7 +67,7 @@
       "rating": 4.9,
       "discount": 10,
       "preparationTime": "12 min",
-      "quantity":1
+      "quantity": 1
     },
     {
       "id": 3,
@@ -83,7 +80,7 @@
       "rating": 4.7,
       "discount": 0,
       "preparationTime": "12 min",
-      "quantity":1
+      "quantity": 1
     },
     {
       "id": 4,
@@ -93,10 +90,10 @@
       "price": 55,
       "image": "https://images.unsplash.com/photo-1528735602780-2552fd46c7af?w=600&auto=format&fit=crop&q=80",
       "available": true,
-      "rating": 4.6,
+      "rating": 2.6,
       "discount": 5,
       "preparationTime": "8 min",
-      "quantity":1
+      "quantity": 1
     },
 
     {
@@ -110,7 +107,7 @@
       "rating": 4.8,
       "discount": 0,
       "preparationTime": "15 min",
-      "quantity":1
+      "quantity": 1
     },
     {
       "id": 6,
@@ -123,7 +120,7 @@
       "rating": 4.9,
       "discount": 15,
       "preparationTime": "15 min",
-      "quantity":1
+      "quantity": 1
     },
     {
       "id": 7,
@@ -136,7 +133,7 @@
       "rating": 4.8,
       "discount": 0,
       "preparationTime": "16 min",
-      "quantity":1
+      "quantity": 1
     },
     {
       "id": 8,
@@ -149,7 +146,7 @@
       "rating": 4.7,
       "discount": 0,
       "preparationTime": "10 min",
-      "quantity":1
+      "quantity": 1
     },
 
     {
@@ -163,7 +160,7 @@
       "rating": 4.9,
       "discount": 20,
       "preparationTime": "20 min",
-      "quantity":1
+      "quantity": 1
     },
     {
       "id": 10,
@@ -176,7 +173,7 @@
       "rating": 4.8,
       "discount": 0,
       "preparationTime": "20 min",
-      "quantity":1
+      "quantity": 1
     },
     {
       "id": 11,
@@ -189,7 +186,7 @@
       "rating": 4.9,
       "discount": 10,
       "preparationTime": "22 min",
-      "quantity":1
+      "quantity": 1
     },
     {
       "id": 12,
@@ -202,7 +199,7 @@
       "rating": 4.6,
       "discount": 0,
       "preparationTime": "18 min",
-      "quantity":1
+      "quantity": 1
     },
 
     {
@@ -216,7 +213,7 @@
       "rating": 4.7,
       "discount": 15,
       "preparationTime": "15 min",
-      "quantity":1
+      "quantity": 1
     },
     {
       "id": 14,
@@ -229,7 +226,7 @@
       "rating": 4.9,
       "discount": 30,
       "preparationTime": "20 min",
-      "quantity":1
+      "quantity": 1
     },
     {
       "id": 15,
@@ -242,7 +239,7 @@
       "rating": 5,
       "discount": 50,
       "preparationTime": "30 min",
-      "quantity":1
+      "quantity": 1
     },
     {
       "id": 16,
@@ -252,10 +249,10 @@
       "price": 350,
       "image": "https://images.unsplash.com/photo-1544025162-d76694265947?w=600&auto=format&fit=crop&q=80",
       "available": true,
-      "rating": 4.8,
+      "rating": 3.8,
       "discount": 40,
       "preparationTime": "25 min",
-      "quantity":1
+      "quantity": 1
     },
 
     {
@@ -269,7 +266,7 @@
       "rating": 4.5,
       "discount": 0,
       "preparationTime": "2 min",
-      "quantity":1
+      "quantity": 1
     },
     {
       "id": 18,
@@ -282,7 +279,7 @@
       "rating": 4.4,
       "discount": 0,
       "preparationTime": "1 min",
-      "quantity":1
+      "quantity": 1
     },
     {
       "id": 19,
@@ -295,7 +292,7 @@
       "rating": 4.6,
       "discount": 0,
       "preparationTime": "5 min",
-      "quantity":1
+      "quantity": 1
     },
     {
       "id": 20,
@@ -308,7 +305,7 @@
       "rating": 4.5,
       "discount": 0,
       "preparationTime": "1 min",
-      "quantity":1
+      "quantity": 1
     }
   ]
 }

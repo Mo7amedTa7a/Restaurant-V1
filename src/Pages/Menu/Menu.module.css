@@ -84,6 +84,21 @@
     width: 300px;
     min-height: 350px
 }
+.stars {
+  display: flex;
+  gap: 3px;
+  margin: 5px 0;
+}
+
+.activeStar {
+  color: #ff9d23;
+  font-size: 22px !important;
+}
+
+.emptyStar {
+  color: #ccc;
+  font-size: 22px !important;
+}
 
 .textPrice {
     padding-top: 10px;

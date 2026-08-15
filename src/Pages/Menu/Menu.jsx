@@ -1,4 +1,4 @@
-import { lazy, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import CardMedia from "@mui/material/CardMedia";
@@ -10,19 +10,18 @@ import { Link } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../../features/cartSlice/cartSlice";
 import { fetchProducts } from "../../apis/FetchProducts";
-
-const ProductSkeleton = lazy(
-  () => import("../../Components/ProductSkeleton/ProductSkeleton"),
-);
+import ProductSkeleton from "../../Components/ProductSkeleton/ProductSkeleton";
 // style
 import styles from "./Menu.module.css";
+import StarBorderIcon from "@mui/icons-material/StarBorder";
+import StarIcon from "@mui/icons-material/Star";
 
 function Menu() {
   const dispatch = useDispatch();
 
   const cartProducts = useSelector((state) => state.cart.items);
   // console.log(products)
-  const { items, categories, loading, error } = useSelector(
+  const { items, categories, status, error } = useSelector(
     (state) => state.products,
   );
   // console.log(items,categories);
@@ -32,6 +31,7 @@ function Menu() {
   const [selectedCategory, setSelectedCategory] = useState("all");
 
   useEffect(() => {
+    if (status !== "idle") return;
     const promise = dispatch(fetchProducts());
     return () => {
       // console.log("🛑 Aborting...");
@@ -54,8 +54,8 @@ function Menu() {
       setSelectedCategory(newAlignment);
     }
   };
-
-  if (loading) {
+  // console.log("STATUS:", status);
+  if (status === "loading") {
     return (
       <Box className={styles.boxLoading}>
         {Array.from({ length: 6 }).map((_, index) => (
@@ -70,7 +70,7 @@ function Menu() {
   }
 
   const renderProducts = () => {
-    if (filteredProducts.length === 0) {
+    if (filteredProducts.length === 0 && status === "succeeded") {
       return (
         <Typography className={styles.textNotFound} sx={{}}>
           Product Not Found
@@ -81,16 +81,29 @@ function Menu() {
     return filteredProducts.map((prod) => {
       // throw new Error("Test Error Boundary");
       const isAdded = cartProducts.some((p) => p.id === prod.id);
+      
       return (
         <Card key={prod.name} className={styles.cardProduct}>
           <CardMedia
             component="img"
-            height="180px"
+            width={300}
+            height={180}
             image={prod.image}
             alt={prod.name}
+            loading="lazy"
+            decoding="async"
           />
 
           <CardContent>
+            <div className={styles.stars}>
+                {Array.from({ length: 5 }).map((_, index) =>
+                  index < Math.round(prod.rating) ? (
+                    <StarIcon key={index} className={styles.activeStar} />
+                  ) : (
+                    <StarBorderIcon key={index} className={styles.emptyStar} />
+                  ),
+                )}
+              </div>
             <Typography variant="h6" color="text.secondary">
               {prod.name}
             </Typography>
@@ -123,23 +136,25 @@ function Menu() {
 
   return (
     <>
-      <Box className={styles.pageMenu}>
-        <ToggleButtonGroup
-          color="primary"
-          value={selectedCategory}
-          exclusive
-          onChange={handleChange}
-          aria-label="Platform"
-          className={styles.toggleButtonGroup}
-        >
-          <ToggleButton value="all">All</ToggleButton>
-          {categories.map((cat) => (
-            <ToggleButton value={cat.id} key={cat.id}>
-              {cat.name}
-            </ToggleButton>
-          ))}
-        </ToggleButtonGroup>
-      </Box>
+      {status === "succeeded" && (
+        <Box className={styles.pageMenu}>
+          <ToggleButtonGroup
+            color="primary"
+            value={selectedCategory}
+            exclusive
+            onChange={handleChange}
+            className={styles.toggleButtonGroup}
+          >
+            <ToggleButton value="all">All</ToggleButton>
+
+            {categories.map((cat) => (
+              <ToggleButton value={cat.id} key={cat.id}>
+                {cat.name}
+              </ToggleButton>
+            ))}
+          </ToggleButtonGroup>
+        </Box>
+      )}
       {/* Products */}
       {/* Products Container */}
 

@@ -1,54 +1,96 @@
-import { Box, Button, InputBase } from "@mui/material";
-import Carousel from "react-bootstrap/Carousel";
-import SearchIcon from "@mui/icons-material/Search";
-import styled from "@emotion/styled";
+import { Box, Button, CardMedia } from "@mui/material";
 import SimpleSlider from "../../Components/SliderHome/SliderHome";
-import Player from "../../Components/RestaurantDetails/RestaurantDetails";
 import { SEO } from "../../Components/SEO/SEO.jsx";
-
-const imgArr = [
-  "https://images.unsplash.com/photo-1589926200324-7129d6a43c80?fm=jpg&q=60&w=3000&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  "https://images.unsplash.com/photo-1661758415432-36ec77ff9b8c?fm=jpg&q=60&w=3000&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  "https://images.unsplash.com/photo-1688084403060-3594a4b8ff8d?fm=jpg&q=60&w=3000&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-];
-
-const Search = styled("div")(() => ({
-  position: "relative",
-  borderRadius: "30rem",
-  backgroundColor: "#fff",
-  width: "450px",
-}));
-
-const SearchIconWrapper = styled("div")(({ theme }) => ({
-  padding: theme.spacing(0, 2),
-  height: "100%",
-  position: "absolute",
-  pointerEvents: "none",
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-  color: theme.palette.primary.main,
-}));
-
-const StyledInputBase = styled(InputBase)(({ theme }) => ({
-  color: "black",
-  "& .MuiInputBase-input": {
-    padding: theme.spacing(1, 1, 1, 0),
-    // vertical padding + font size from searchIcon
-    paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-    transition: theme.transitions.create("width"),
-  },
-}));
+import styles from "./Home.module.css";
+import { useNavigate } from "react-router";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { fetchProducts } from "../../apis/FetchProducts.js";
+import ProductSkeleton from "../../Components/ProductSkeleton/ProductSkeleton.jsx";
+import { useInView } from "react-intersection-observer";
 function Home() {
-  // useEffect(() => {
-  //   const getProducts = async () => {
-  //     const data = await api.GetAllCarts();
+  const { ref, inView } = useInView({
+    triggerOnce: true,
+    threshold: 0.2,
+  });
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const { items, status, error } = useSelector((state) => state.products);
+  // console.log("inView:", inView);
+  // console.log("status:", status);
+  // console.log("items:", items);
+  // console.log(items);
 
-  //     console.log(data);
-  //   };
+  useEffect(() => {
+    // console.log("useEffect running");
+    // console.log("inView:", inView);
+    // console.log("status:", status);
 
-  //   getProducts();
-  // }, []);
+    if (inView && status === "idle") {
+      // console.log("🚀 Sending request...");
+
+      const promise = dispatch(fetchProducts());
+
+      return () => {
+        promise.abort();
+      };
+    }
+
+    // console.log("❌ Request not sent");
+  }, [dispatch, inView]);
+
+  const offers = items.filter((item) => item.discount > 0);
+  // console.log(offers);
+
+  if (error) {
+    return <Box className={styles.boxError}>{error}</Box>;
+  }
+
+  const renderOffers = () => {
+    if (!items.length && status === "loading") {
+      return (
+        <Box className={styles.boxLoading}>
+          {Array.from({ length: 6 }).map((_, index) => (
+            <ProductSkeleton key={index} />
+          ))}
+        </Box>
+      );
+    }
+    return offers.map((prod) => {
+      const priceAfterDiscount = Math.floor(
+        prod.price - (prod.price * prod.discount) / 100,
+      );
+      return (
+        <div
+          key={prod.id}
+          className={styles.cardProduct}
+          onClick={() => navigate(`/productDetails/${prod.id}`)}
+        >
+          <div className={styles.conImg}>
+            <CardMedia
+              component="img"
+              width={300}
+              height={180}
+              image={prod.image}
+              alt={prod.name}
+              loading="lazy"
+              decoding="async"
+            />
+            <h4 variant="h5" className={styles.discount}>
+              {prod.discount}% Offer
+            </h4>
+            <div className={styles.coverBackground}></div>
+          </div>
+
+          <div className={styles.infoCard}>
+            <h6 className={styles.textName}>{prod.name}</h6>
+            <h6 className={styles.textPrice}>{priceAfterDiscount} EGP</h6>
+            <h6 className={styles.oldPrice}>{prod.price} EGP</h6>
+          </div>
+        </div>
+      );
+    });
+  };
   return (
     <>
       <SEO
@@ -56,155 +98,74 @@ function Home() {
         discription="Enjoy delicious fresh meals, pizza and burgers."
         keyword="restaurant, pizza, burger"
       />
+
       <Box>
-        <Box
-          style={{
-            position: "relative",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            background: "#2445",
-          }}
-        >
-          <Box
-            sx={{
-              position: "absolute",
-              top: "60%",
-              left: "50%",
-              zIndex: 99,
-              transform: "translate(-50%, -50%)",
-            }}
+        {/* Hero */}
+        <div className={styles.hero}>
+          {/* Video Background */}
+          <video
+            className={styles.heroVideo}
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="metadata"
           >
-            <Search>
-              <SearchIconWrapper>
-                <SearchIcon />
-              </SearchIconWrapper>
-              <StyledInputBase
-                placeholder="Search…"
-                inputProps={{ "aria-label": "search" }}
-              />
-            </Search>
-            <Box
-              sx={{
-                marginTop: "30px",
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-              }}
+            <source src="/src/assets/hero.mp4" type="video/mp4" />
+          </video>
+
+          {/* Dark Overlay */}
+          <div className={styles.overlay} />
+
+          {/* Hero Logo */}
+          <div className={styles.logoContainer}>
+            <img
+              className={styles.heroLogo}
+              src="/logo2.png"
+              alt="Restaurant Logo"
+            />
+          </div>
+
+          {/* Hero Title */}
+          <div className={styles.heroContent}>
+            <h1 className={styles.heroTitle}>Taste The Best Food</h1>
+
+            <p className={styles.heroDescription}>
+              Fresh ingredients - Delicious meals - Unforgettable taste.
+            </p>
+          </div>
+
+          {/* Buttons */}
+          <div className={styles.buttonsContainer}>
+            <Button
+              variant="outlined"
+              className={styles.contactUs}
+              onClick={() => navigate("/contact")}
             >
-              <Button
-                variant="outlined"
-                color="#fff"
-                sx={{
-                  marginInlineEnd: "30px",
-                  height: 28,
-                  p: 2.5,
-                  fontSize: "16px",
-                  color: "#fff",
-                }}
-              >
-                Order Now
-              </Button>
-              <Button
-                variant="contained"
-                sx={{
-                  height: 28,
-                  p: 2.5,
-                  fontSize: "16px",
-                  color: "#fff",
-                }}
-              >
-                Show Menu
-              </Button>
-            </Box>
-          </Box>
-          <Carousel
-            style={{
-              width: "100%",
-              height: "100vh",
-              paddingTop: "65px",
-              background: "#000",
-            }}
-          >
-            <Carousel.Item>
-              <img
-                className="d-block w-100"
-                src={imgArr[0]}
-                alt="First slide"
-                style={{
-                  height: "calc(100vh - 65px)",
-                  objectFit: "cover",
-                  width: "100%",
-                  opacity: ".4",
-                }}
-              />
-              <Carousel.Caption
-                style={{
-                  top: "80px",
-                  bottom: "auto",
-                }}
-              >
-                <h3>First slide label</h3>
-                <p>
-                  Nulla vitae elit libero, a pharetra augue mollis interdum.
-                </p>
-              </Carousel.Caption>
-            </Carousel.Item>
-            <Carousel.Item>
-              <img
-                className="d-block w-100"
-                src={imgArr[1]}
-                alt="First slide"
-                style={{
-                  height: "calc(100vh - 65px)",
-                  objectFit: "cover",
-                  width: "100%",
-                  opacity: ".4",
-                }}
-              />
-              <Carousel.Caption
-                style={{
-                  top: "80px",
-                  bottom: "auto",
-                }}
-              >
-                <h3>Second slide label</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-              </Carousel.Caption>
-            </Carousel.Item>
-            <Carousel.Item>
-              <img
-                className="d-block w-100"
-                src={imgArr[2]}
-                alt="First slide"
-                style={{
-                  height: "calc(100vh - 65px)",
-                  objectFit: "cover",
-                  width: "100%",
-                  opacity: ".4",
-                }}
-              />
-              <Carousel.Caption
-                style={{
-                  top: "80px",
-                  bottom: "auto",
-                }}
-              >
-                <h3>Third slide label</h3>
-                <p>
-                  Praesent commodo cursus magna, vel scelerisque nisl
-                  consectetur.
-                </p>
-              </Carousel.Caption>
-            </Carousel.Item>
-          </Carousel>
-        </Box>
-        <Box>
+              Contact Us
+            </Button>
+
+            <Button
+              variant="contained"
+              className={styles.menuButton}
+              onClick={() => navigate("/menu")}
+            >
+              Show Menu
+            </Button>
+          </div>
+        </div>
+
+        {/* Services Slider */}
+        <div>
           <SimpleSlider />
-        </Box>
-        <Box>
-          <Player />
-        </Box>
+        </div>
+        {/* Offers Slider */}
+        <div>
+          <h2 className={styles.title}>Offers</h2>
+          <div ref={ref} className={styles.boxContainerProducts}>
+            {renderOffers()}
+          </div>
+        </div>
       </Box>
     </>
   );

@@ -2,15 +2,18 @@ import { createBrowserRouter } from "react-router";
 import { ErrorBoundary } from "react-error-boundary";
 import { ErrorFillBack } from "../Components/MenuErrorBundary/MenuErrorBundary";
 import { lazy } from "react";
-const LayOut = lazy(() => import("../LayOut/LayOut"));
+
+import LayOut from "../LayOut/LayOut";
+import SecLayOut from "../LayOut/SecLayOut";
+import authMiddleware from "../Middleware/authMiddleware";
+
 const About = lazy(() => import("../Pages/About/About"));
 const ContactUs = lazy(() => import("../Pages/Contact/ContactUs"));
 const NotFound = lazy(() => import("../Pages/NotFound/NotFound"));
-const SecLayOut = lazy(() => import("../LayOut/SecLayOut"));
+
 const ProductDetail = lazy(
   () => import("../Pages/ProductDetails/ProductDetail"),
 );
-const authMiddleware = lazy(() => import("../Middleware/authMiddleware"));
 const Login = lazy(() => import("../Pages/Login/Login"));
 
 const Cart = lazy(() => import("../Pages/Cart/Cart"));

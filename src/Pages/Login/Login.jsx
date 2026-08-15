@@ -11,7 +11,7 @@ export default function Login() {
     const userData = Object.fromEntries(formData.entries());
     localStorage.setItem("user", JSON.stringify(userData));
     e.target.reset();
-    navigate("/About");
+    navigate("/about");
 
     // navigate("/About",{
     //   state: userData,

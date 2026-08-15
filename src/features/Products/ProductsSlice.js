@@ -4,7 +4,7 @@ import { fetchProducts } from "../../apis/FetchProducts";
 const initialState = {
   items: [],
   categories: [],
-  loading: true,
+  status: "idle",
   error: null,
 };
 
@@ -14,17 +14,18 @@ const ProductsSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(fetchProducts.pending, (state) => {
-      state.loading = true;
+      state.status = "loading";
       state.error = null;
     });
     builder.addCase(fetchProducts.fulfilled, (state, action) => {
-      state.loading = false;
+      state.status = "succeeded";
       state.items = action.payload.products;
       state.categories = action.payload.categories;
     });
     builder.addCase(fetchProducts.rejected, (state, action) => {
-      state.loading = false;
+      state.status = "failed";
       if (action.meta.aborted) {
+        state.status = "idle";
         return;
       }
       state.error = action.error.message;
