@@ -5,31 +5,32 @@ import { FiSmartphone } from "react-icons/fi";
 function ContactUs() {
   return (
     <section className={styles.contactUs}>
-      <h2>Contact Us</h2>
+      <h2 className={styles.title}>Contact Us</h2>
+
       <div className={styles.contactContainer}>
-        {/* تواصل معنا */}
-        <div className={styles.contactBox}>
+        {/* Contact */}
+        <div className={`${styles.contactBox} ${styles.animateLeft}`}>
           <FaMobileAlt className={styles.phoneIcon} />
 
-          <h3 className={styles.phoneTitle}>تواصل معنا</h3>
+          <h3 className={styles.phoneTitle}>Contact Us</h3>
 
           <p className={styles.contactText}>+20 115 33 039 15</p>
         </div>
 
-        {/* للشكاوي */}
-        <div className={styles.contactBox}>
+        {/* Complaints */}
+        <div className={`${styles.contactBox} ${styles.animateUp}`}>
           <FiSmartphone className={styles.complaintIcon} />
 
-          <h3 className={styles.complaintTitle}>للشكاوي</h3>
+          <h3 className={styles.complaintTitle}>For Complaints</h3>
 
           <p className={styles.contactText}>+20 101 41 764 34</p>
         </div>
 
-        {/* البريد الإلكتروني */}
-        <div className={styles.contactBox}>
+        {/* Email */}
+        <div className={`${styles.contactBox} ${styles.animateRight}`}>
           <FaTelegramPlane className={styles.emailIcon} />
 
-          <h3 className={styles.emailTitle}>البريد الإلكتروني</h3>
+          <h3 className={styles.emailTitle}>Email Us</h3>
 
           <p className={styles.emailText}>info@fomo.com</p>
         </div>

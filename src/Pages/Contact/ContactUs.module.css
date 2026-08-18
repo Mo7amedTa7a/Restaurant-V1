@@ -72,6 +72,65 @@
 .emailTitle {
     color: #54b8a9;
 }
+/* Title Animation */
+.title {
+  opacity: 0;
+  transform: translateY(-30px);
+  animation: fadeDown 0.6s ease forwards;
+}
+
+/* First Box */
+.animateLeft {
+  opacity: 0;
+  transform: translateX(-60px);
+  animation: slideFromLeft 0.7s ease forwards;
+  animation-delay: 0.4s;
+}
+
+/* Second Box */
+.animateUp {
+  opacity: 0;
+  transform: translateY(60px);
+  animation: fadeUp 0.7s ease forwards;
+  animation-delay: 0.7s;
+}
+
+/* Third Box */
+.animateRight {
+  opacity: 0;
+  transform: translateX(60px);
+  animation: slideFromRight 0.7s ease forwards;
+  animation-delay: 1s;
+}
+
+/* Keyframes */
+@keyframes fadeDown {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideFromLeft {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideFromRight {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
 
 /* Responsive */
 @media (max-width: 768px) {

@@ -1,0 +1,133 @@
+.registerPage {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 30px 15px;
+  background: #f5f5f5;
+}
+
+.registerCard {
+  width: 100%;
+  max-width: 540px;
+  padding: 40px;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+  animation: cardAppear 0.7s ease forwards;
+}
+
+.logo {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.logo img {
+  width: 130px;
+  height: auto;
+  object-fit: contain;
+}
+
+.heading {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.heading h2 {
+  margin-bottom: 8px;
+  color: #172333;
+}
+
+.heading p {
+  color: #777;
+}
+
+.registerForm {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.formGroup label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #172333;
+}
+
+.formGroup input {
+  width: 100%;
+  padding: 13px 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  outline: none;
+  font-size: 15px;
+  transition: 0.3s;
+}
+
+.formGroup input:focus {
+  border-color: #ff7a00;
+  box-shadow: 0 0 0 3px rgba(255, 122, 0, 0.12);
+}
+
+.registerButton {
+  width: 100%;
+  padding: 14px;
+  margin-top: 5px;
+  border: none;
+  border-radius: 8px;
+  background: #ff7a00;
+  color: white;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.registerButton:hover {
+  transform: translateY(-2px);
+  background: #e96f00;
+  box-shadow: 0 8px 20px rgba(255, 122, 0, 0.25);
+}
+
+.footerText {
+  margin: 20px 0 0;
+  text-align: center;
+  color: #777;
+  font-size: 14px;
+}
+
+.footerText a {
+  color: #ff7a00;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.footerText a:hover {
+  text-decoration: underline;
+}
+
+@keyframes cardAppear {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 480px) {
+  .registerCard {
+    padding: 30px 20px;
+  }
+}
