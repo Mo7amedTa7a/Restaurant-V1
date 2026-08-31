@@ -60,6 +60,7 @@ const Route = createBrowserRouter([
           {
             path: "cart",
             Component: Cart,
+            middleware: [authMiddleware],
           },
         ],
       },
@@ -73,12 +74,12 @@ const Route = createBrowserRouter([
           {
             path: "register",
             Component: Register,
-            action: async ({ request }) => {
-              const formData1 = await request.formData();
-              const data = Object.fromEntries(formData1.entries());
-              console.log("from router data", data);
-              return data;
-            },
+            // action: async ({ request }) => {
+            //   const formData1 = await request.formData();
+            //   const data = Object.fromEntries(formData1.entries());
+            //   console.log("from router data", data);
+            //   return data;
+            // },
           },
           {
             path: "*",

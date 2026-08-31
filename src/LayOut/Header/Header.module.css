@@ -3,7 +3,7 @@
     background: #ffffff;
     width: 100%;
     z-index: 10000;
-    box-shadow: 1px 1px 5px #42424283;
+
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -14,7 +14,7 @@
 /* الصفحة الرئيسية قبل Scroll */
 .homeHeader {
     background-color: transparent;
-    box-shadow: 0px 0px 0px #42424283;
+
 }
 
 .homeHeader .navLink {
@@ -29,6 +29,11 @@
 /* الصفحة الرئيسية بعد Scroll */
 .scrolled {
     background-color: #ffffff;
+    box-shadow: 1px 1px 5px #42424283;
+}
+
+.scrolled .containerMenuHeaderIcon {
+    color: #e69a3d
 }
 
 /* باقي الصفحات */
@@ -36,6 +41,9 @@
     background-color: #ffffff;
 }
 
+.normalHeader .containerMenuHeaderIcon {
+    color: #e69a3d
+}
 .boxLogoAndCart {
     display: flex;
     align-items: center;
@@ -133,12 +141,72 @@
     font-size: 10px;
 }
 
-
-
 .headerToolbar {
     display: flex;
     justify-content: space-between;
     gap: 20px;
+}
+
+.containerMenuHeader {
+    position: relative;
+}
+
+.containerMenuHeaderIcon {
+    color: #fff;
+    font-size: 40px;
+    cursor: pointer;
+}
+
+.menuHeader {
+    position: absolute;
+    top: 55px;
+    background-color: #fff;
+    padding: 5px;
+    border-radius: 7px;
+    padding: 10px 5px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition:
+        opacity 0.3s ease,
+        transform 0.3s ease,
+        visibility 0.3s ease;
+}
+
+.menuShow {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+.menuHeader button,
+.menuHeader a {
+    display: block;
+    font-size: 17px;
+    cursor: pointer;
+    color: #eb880f;
+    padding: 5px 30px;
+    text-decoration: none;
+}
+.menuHeader button{
+    background-color: transparent;
+    border: 0;
+}
+
+.menuHeader button:hover,
+.menuHeader a:hover {
+    background-color: #3333330a;
+    border-radius: 7px;
+}
+
+.btnlogin{
+    background-color: #e68a1a;
+    color: #fff;
+    border-radius: 7px;
+    padding: 5px 20px;
+    text-decoration: none;
+}
+.btnlogin:hover{
+    background-color: #e68a1ad2;
 }
 
 @media (max-width: 768px) {

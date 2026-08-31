@@ -1,7 +1,7 @@
 import styles from "./Register.module.css";
 import { useDispatch } from "react-redux";
 import { register } from "../../features/auth/AuthSlice";
-import { useNavigate } from "react-router";
+import { NavLink, useNavigate } from "react-router";
 
 export default function Register() {
   const dispatch = useDispatch();
@@ -114,7 +114,7 @@ export default function Register() {
         </form>
 
         <p className={styles.footerText}>
-          Already have an account? <a href="/login">Sign In</a>
+          Already have an account? <NavLink onClick={()=> navigate('/login')}>Sign In</NavLink>
         </p>
       </div>
     </section>

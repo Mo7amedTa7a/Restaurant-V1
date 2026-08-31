@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router";
+import { NavLink, useNavigate } from "react-router";
 import styles from "./Login.module.css";
 import { useDispatch } from "react-redux";
 import { login } from "../../features/auth/AuthSlice";
@@ -79,7 +79,7 @@ export default function Login() {
         </form>
 
         <p className={styles.footerText}>
-          Hungry for something delicious? <a href="/register">Create Acount</a>
+          Hungry for something delicious? <NavLink onClick={()=> navigate('/register')}>Create Acount</NavLink>
         </p>
       </div>
     </section>

@@ -35,7 +35,8 @@ const AuthSlice = createSlice({
       state.user = null;
       state.isLoggedIn = false;
 
-      localStorage.removeItem("user");
+      localStorage.removeItem("user")
+
     },
 
     register: (state, action) => {
