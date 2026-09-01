@@ -9,7 +9,7 @@
 .contactUs h2{
     font-weight: bold;
     padding-bottom: 5px;
-    border-bottom: 3px solid #ff7a00;
+    border-bottom: 3px solid #ee8915;
     margin-top: 50px;
 }
 .contactContainer {
@@ -60,7 +60,7 @@
 /* Colors */
 .phoneIcon,
 .phoneTitle {
-    color: #ff7a00;
+    color: #ee8915;
 }
 
 .complaintIcon,

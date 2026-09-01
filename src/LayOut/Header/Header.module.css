@@ -64,7 +64,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #ff9d23;
+    color: #ee8915;
 }
 
 .inputSeacrch {
@@ -101,11 +101,11 @@
 }
 
 .navLink:hover {
-    color: #ff9d23;
+    color: #ee8915;
 }
 
 .navLink.active {
-    color: #ff9d23;
+    color: #ee8915;
 }
 
 
@@ -116,7 +116,7 @@
 }
 
 .cartIcon {
-    color: #ff9d23;
+    color: #ee8915;
     margin-left: 3rem;
     cursor: pointer;
     transition: transform 0.3s ease-in-out;
@@ -136,7 +136,7 @@
     align-items: center;
     justify-content: center;
     border-radius: 50%;
-    background: #ff9d23;
+    background: #ee8915;
     color: #fff;
     font-size: 10px;
 }
@@ -199,14 +199,14 @@
 }
 
 .btnlogin{
-    background-color: #e68a1a;
+    background-color: #ee8915;
     color: #fff;
     border-radius: 7px;
     padding: 5px 20px;
     text-decoration: none;
 }
 .btnlogin:hover{
-    background-color: #e68a1ad2;
+    background-color: #ee8915d2;
 }
 
 @media (max-width: 768px) {

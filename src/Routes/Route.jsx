@@ -7,6 +7,7 @@ import LayOut from "../LayOut/LayOut";
 import SecLayOut from "../LayOut/SecLayOut";
 import authMiddleware from "../Middleware/authMiddleware";
 
+const AcountComponent = lazy(() => import("../Acount/Acount"));
 const About = lazy(() => import("../Pages/About/About"));
 const ContactUs = lazy(() => import("../Pages/Contact/ContactUs"));
 const NotFound = lazy(() => import("../Pages/NotFound/NotFound"));
@@ -62,6 +63,11 @@ const Route = createBrowserRouter([
             Component: Cart,
             middleware: [authMiddleware],
           },
+          {
+            path: 'acount',
+            Component: AcountComponent,
+            middleware: [authMiddleware],
+          }
         ],
       },
       {

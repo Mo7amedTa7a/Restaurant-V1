@@ -1,4 +1,4 @@
-import { NavLink, useNavigate } from "react-router";
+import { Link, useNavigate } from "react-router";
 import styles from "./Login.module.css";
 import { useDispatch } from "react-redux";
 import { login } from "../../features/auth/AuthSlice";
@@ -40,7 +40,7 @@ export default function Login() {
     <section className={styles.loginPage}>
       <div className={styles.loginCard}>
         <div className={styles.logo}>
-          <img src="/logo.png" alt="FOMO Logo" />
+          <Link to='/'><img src="/logo.png" alt="Maximum Logo" /></Link>
         </div>
 
         <div className={styles.heading}>
@@ -79,7 +79,7 @@ export default function Login() {
         </form>
 
         <p className={styles.footerText}>
-          Hungry for something delicious? <NavLink onClick={()=> navigate('/register')}>Create Acount</NavLink>
+          Hungry for something delicious? <Link to='/register'>Create Acount</Link>
         </p>
       </div>
     </section>

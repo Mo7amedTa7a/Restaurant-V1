@@ -32,7 +32,7 @@ function ContactUs() {
 
           <h3 className={styles.emailTitle}>Email Us</h3>
 
-          <p className={styles.emailText}>info@fomo.com</p>
+          <p className={styles.emailText}>mohamedtaha1625@gmail.com</p>
         </div>
       </div>
     </section>

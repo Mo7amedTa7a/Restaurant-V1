@@ -39,7 +39,7 @@ const Footer = () => {
       </div>
 
       <p className={styles.copyright}>
-        © 2026 <span>FOMO Fast Food</span>
+        © 2026 <span>Maximum Fast Food</span>
       </p>
     </footer>
   );

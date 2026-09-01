@@ -12,7 +12,7 @@ function Loader() {
     >
       <img style={{width:"150px" }} src="/logo.png" alt="logo" />
 
-      <h5 style={{paddingTop:"20px",color:"#FF9D23"}}>Loading.....</h5>
+      <h5 style={{paddingTop:"20px",color:"#ee8915"}}>Loading.....</h5>
     </div>
   );
 }

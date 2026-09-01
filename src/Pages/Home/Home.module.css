@@ -108,7 +108,7 @@
   height: 45px;
 
   font-size: 16px;
-  background-color: #ff9d23;
+  background-color: #ee8915;
 }
 
 /* Mobile */
@@ -213,7 +213,7 @@
 
 .title {
   text-align: center;
-  color: #ff9d23;
+  color: #ee8915;
   font-size: 36px;
   font-weight: 700;
   margin: 0 0 20px;
@@ -225,7 +225,7 @@
   display: block;
   width: 55px;
   height: 4px;
-  background-color: #ff9d23;
+  background-color: #ee8915;
   margin: 12px auto 0;
   border-radius: 10px;
 }
@@ -270,7 +270,7 @@
 }
 
 .textPrice {
-  color: #ff9d23;
+  color: #ee8915;
   font-weight: bold;
   margin-top: 5px;
 }

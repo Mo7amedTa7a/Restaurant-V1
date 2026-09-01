@@ -3,7 +3,7 @@ import { createTheme } from "@mui/material/styles";
 const theme = createTheme({
   palette: {
     primary: {
-      main: "#FF9D23",
+      main: "#ee8915",
     },
     secondary: {
       main: "#fff",
@@ -41,7 +41,7 @@ const theme = createTheme({
       margin: "0 15px",
       fontSize: "18px",
       fontWeight: "500",
-      color: "#FF9D23",
+      color: "#ee8915",
       "&:hover": {
         color: "#ff9c238a",
       },

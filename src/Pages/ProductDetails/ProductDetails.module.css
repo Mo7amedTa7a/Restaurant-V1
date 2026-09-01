@@ -9,7 +9,7 @@
 }
 
 .loading {
-  color: #ff9d23;
+  color: #ee8915;
 }
 
 .error,
@@ -104,7 +104,7 @@
 }
 
 .activeStar {
-  color: #ff9d23;
+  color: #ee8915;
   font-size: 22px !important;
 }
 
@@ -120,7 +120,7 @@
 }
 
 .textPrice {
-  color: #ff9d23;
+  color: #ee8915;
   font-weight: bold;
   font-size: 16px;
   margin-top: 5px;
@@ -144,7 +144,7 @@
   color: #fff;
   border-radius: 6px;
   padding: 5px 15px;
-  background: #ff9d23;
+  background: #ee8915;
   cursor: pointer;
 }
 

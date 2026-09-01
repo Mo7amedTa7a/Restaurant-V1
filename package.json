@@ -30,6 +30,7 @@
     "slick-carousel": "^1.8.1",
     "stylis": "^4.4.0",
     "stylis-plugin-rtl": "^2.1.1",
+    "sweetalert2": "^11.26.25",
     "swiper": "^14.0.6"
   },
   "devDependencies": {

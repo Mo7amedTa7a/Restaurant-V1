@@ -1,7 +1,7 @@
 import styles from "./Register.module.css";
 import { useDispatch } from "react-redux";
 import { register } from "../../features/auth/AuthSlice";
-import { NavLink, useNavigate } from "react-router";
+import { Link, useNavigate } from "react-router";
 
 export default function Register() {
   const dispatch = useDispatch();
@@ -49,7 +49,7 @@ export default function Register() {
     <section className={styles.registerPage}>
       <div className={styles.registerCard}>
         <div className={styles.logo}>
-          <img src="/logo.png" alt="FOMO Logo" />
+          <Link to='/'><img src="/logo.png" alt="Maximum Logo" /></Link>
         </div>
 
         <div className={styles.heading}>
@@ -114,7 +114,7 @@ export default function Register() {
         </form>
 
         <p className={styles.footerText}>
-          Already have an account? <NavLink onClick={()=> navigate('/login')}>Sign In</NavLink>
+          Already have an account? <Link to='/login'>Sign In</Link>
         </p>
       </div>
     </section>

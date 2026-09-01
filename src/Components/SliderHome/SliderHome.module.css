@@ -8,7 +8,7 @@
 
 .title {
   text-align: center;
-  color: #ff9d23;
+  color: #ee8915;
   font-size: 36px;
   font-weight: 700;
   margin: 0 0 20px;
@@ -20,7 +20,7 @@
   display: block;
   width: 55px;
   height: 4px;
-  background-color: #ff9d23;
+  background-color: #ee8915;
   margin: 12px auto 0;
   border-radius: 10px;
 }
@@ -50,13 +50,13 @@
 
 .offerItem:hover {
   transform: translateY(-8px);
-  border-color: #ff9d23;
+  border-color: #ee8915;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
 }
 
 .offerIcon {
   font-size: 32px;
-  color: #ff9d23;
+  color: #ee8915;
 }
 
 .offerText {

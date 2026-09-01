@@ -45,7 +45,7 @@
   align-items: center;
 
   border-radius: 50%;
-  background-color: #d9982b;
+  background-color: #ee8915;
   color: #fff;
 
   text-decoration: none;
@@ -57,7 +57,7 @@
 }
 
 .socialIcon:hover {
-  background-color: #ff9d23;
+  background-color: #ee8915;
   transform: translateY(-5px);
 }
 

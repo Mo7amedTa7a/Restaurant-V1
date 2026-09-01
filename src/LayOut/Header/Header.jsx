@@ -4,17 +4,17 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import Box from "@mui/material/Box";
 import SearchIcon from "@mui/icons-material/Search";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import { Link, NavLink, useLocation, useNavigate } from "react-router";
+import { Link, NavLink, useLocation } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import { setSearch } from "../../features/SearchSlice/SearchSlice";
 import { useEffect, useRef, useState } from "react";
-import { logout } from "../../features/auth/AuthSlice";
+import LogoutButton from "../../Components/Logout/Logout";
 
 const NavHeader = [
   { path: "/", name: "Home" },
   { path: "/menu", name: "Menu" },
   { path: "/about", name: "About" },
-  { path: "/contact", name: "Contact" },
+  { path: "/contact", name: "Contact" }
 ];
 
 
@@ -29,8 +29,6 @@ function Header({ setShowSide }) {
     dispatch(setSearch(e.target.value));
   };
   const location = useLocation();
-  const navigate = useNavigate()
-
   const isMenuPage = location.pathname === "/menu";
 
   const [isScrolled, setIsScrolled] = useState(false);
@@ -55,16 +53,6 @@ function Header({ setShowSide }) {
       window.removeEventListener("scroll", handleScroll);
     };
   }, [isHome]);
-
-  const handleLogout = () => {
-    const conf = confirm("Do You Want Log Out?")
-    if (conf) {
-      dispatch(logout());
-      setMenu(false)
-      navigate("/");
-    }
-  }
-
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (menuRef.current && !menuRef.current.contains(event.target)) {
@@ -93,8 +81,8 @@ function Header({ setShowSide }) {
           <div ref={menuRef} className={styles.containerMenuHeader}>
             <AccountCircleIcon className={styles.containerMenuHeaderIcon} sx={{ fontSize: 40 }} onClick={() => setMenu((prev) => !prev)} />
             <div className={`${styles.menuHeader} ${menu ? styles.menuShow : ""}`}>
-              <Link>Acount</Link>
-              <button onClick={handleLogout}>LogOut</button>
+              <Link to='acount'>Acount</Link>
+              <LogoutButton/>
             </div>
           </div>
         ) : (

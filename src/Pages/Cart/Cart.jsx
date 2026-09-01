@@ -1,104 +1,166 @@
-import { Box, Card, CardContent, CardMedia, Typography } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router";
-import { removeCart } from "../../features/cartSlice/cartSlice";
+import { decItem, incItem, removeCart } from "../../features/cartSlice/cartSlice";
+import styles from "./Cart.module.css";
 
 const Cart = () => {
-  const  dispatch = useDispatch()
+  const dispatch = useDispatch();
+
   const items = useSelector((state) => state.cart.items);
+
+
+  const totalItems = items.reduce((total,product)=>{
+    return total + product.quantity
+  }, 0);
+  const subtotal = items.reduce((total, product) => {
+    return total + Number(product.price)*product.quantity;
+  }, 0);
+
   return (
-    <Box
-      sx={{
-        marginTop: "100px",
-        display: "flex",
-        flexDirection: "column",
-        flexWrap: "wrap",
-        gap: "20px",
-        alignItems: "center",
-        justifyContent: "center",
-      }}
-    >
-      <h4 style={{ fontWeight: "bold", color: "#724a19" }}>All Product Cart</h4>
-      <Box
-        sx={{
-          display: "flex",
-          flexWrap: "wrap",
-          gap: "20px",
-          alignItems: "center",
-          justifyContent: "center",
-          width: "90%",
-        }}
-      >
-        {items.map((prod) => (
-          
-            <Card
-              key={prod.id}
-              sx={{ width: "380px", minHeight: "100px", paddingBlockEnd: "0"}}
-            >
-              <Box
-                sx={{
-                  display: "flex",
-                  flexDirection: "row-reverse",
-                  justifyContent: "space-between",
-                  borderBlockEnd: "1px solid #3454",
-                }}
+    <div className={styles.cartPage}>
+
+      <h4 className={styles.title}>All Product Cart</h4>
+
+      <div className={styles.cartContainer}>
+
+        {/* Products */}
+        <div className={styles.productsContainer}>
+
+          {items.length === 0 ? (
+            <h6 className={styles.emptyCart}>
+              Your cart is empty
+            </h6>
+          ) : (
+            items.map((prod) => (
+              <div
+                key={prod.id}
+                className={styles.productCard}
               >
-                <CardMedia
-                  component="img"
-                  height="115px"
-                  sx={{ width: "120px", borderRadius: "5px 0 0 5px" }}
-                  image={prod.image}
-                  alt={prod.name}
-                />
-                <CardContent>
-                  <Typography variant="h6" color="text.secondary">
-                    {prod.name}
-                  </Typography>
-                  <Typography
-                    variant="h6"
-                    sx={{ paddingTop: "10px", fontWeight: "bold" }}
+                <div className={styles.productInfo}>
+
+                  <div
+                    alt={prod.name}
+                    className={styles.productImage}
+                    >
+                    <img src={prod.image} alt={prod.name} className={styles.productImage} />
+                  </div>
+
+                  <div className={styles.productContent}>
+                    <h6
+                      variant="h6"
+                      className={styles.productName}
+                    >
+                      {prod.name}
+                    </h6>
+
+                    <h6
+                      variant="h6"
+                      className={styles.productPrice}
+                    >
+                      {prod.price} EGP
+                    </h6>
+
+
+
+                  </div>
+
+                </div>
+
+                <div className={styles.productActions}>
+
+                  <button
+                    className={styles.removeButton}
+                    onClick={() => dispatch(removeCart(prod))}
                   >
-                    {prod.price} EGP
-                  </Typography>
-                </CardContent>
-              </Box>
-              <Box
-                sx={{
-                  padding: "20px",
-                  display: "flex",
-                  justifyContent: "space-between",
-                  alignItems: "center",
-                  paddingTop: "10px",
-                }}
-              >
-                <button
-                  style={{
-                    fontSize: "13px",
-                    border: 0,
-                    background: "#c51616",
-                    color: "#fff",
-                    borderRadius: "6px",
-                    padding: "5px 15px",
-                  }}
-                  onClick={()=> dispatch(removeCart(prod))}
-                >
-                  Remove
-                </button>
-                <Link
-                  style={{
-                    textDecoration: "none",
-                    fontSize: "13px",
-                    color: "#d87d0f",
-                  }}
-                  to={`/productDetails/${prod.id}`}
-                >
-                  Details →
-                </Link>
-              </Box>
-            </Card>
-        ))}
-      </Box>
-    </Box>
+                    Remove
+                  </button>
+                  <div className={styles.quantityControl}>
+                    <button
+                      className={styles.quantityButton}
+                      onClick={() => dispatch(decItem(prod.id))}
+                    >
+                      -
+                    </button>
+
+                    <h6 className={styles.quantity}>
+                      {prod.quantity}
+                    </h6>
+
+                    <button
+                      className={styles.quantityButton}
+                      onClick={() => dispatch(incItem(prod.id))}
+                    >
+                      +
+                    </button>
+                  </div>
+                  <Link
+                    className={styles.detailsLink}
+                    to={`/productDetails/${prod.id}`}
+                  >
+                    Details →
+                  </Link>
+
+                </div>
+              </div>
+            ))
+          )}
+
+        </div>
+
+
+        {/* Cart Summary */}
+        <div className={styles.summary}>
+
+          <h3 className={styles.summaryTitle}>
+            Order Summary
+          </h3>
+
+          <div className={styles.summaryRow}>
+            <span>Products</span>
+            <span>{totalItems}</span>
+          </div>
+
+          <div className={styles.summaryRow}>
+            <span>Subtotal</span>
+            <span>{subtotal} EGP</span>
+          </div>
+
+          {/* Coupon */}
+          <div className={styles.couponBox}>
+
+            <label htmlFor="coupon">
+              Have a discount code?
+            </label>
+
+            <div className={styles.couponInput}>
+              <input
+                id="coupon"
+                type="text"
+                placeholder="Enter coupon code"
+              />
+
+              <button>
+                Apply
+              </button>
+            </div>
+
+          </div>
+
+          <div className={styles.totalRow}>
+            <span>Total</span>
+            <span>{subtotal} EGP</span>
+          </div>
+
+          <button className={styles.checkoutButton}>
+            Checkout
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
   );
 };
+
 export default Cart;

@@ -1,7 +1,7 @@
 {
   "restaurant": {
     "id": 1,
-    "name": "FOMO Fast Food",
+    "name": "Maximum Fast Food",
     "logo": "/logo.png",
     "coverImage": "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=1200&auto=format&fit=crop&q=80",
     "rating": 4.9,
@@ -244,7 +244,7 @@
     {
       "id": 16,
       "categoryId": 4,
-      "name": "FOMO Box",
+      "name": "Maximum Box",
       "description": "Selection of the best sandwiches",
       "price": 350,
       "image": "https://images.unsplash.com/photo-1544025162-d76694265947?w=600&auto=format&fit=crop&q=80",
