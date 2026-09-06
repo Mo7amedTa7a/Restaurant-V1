@@ -111,7 +111,7 @@ function Home() {
             playsInline
             preload="metadata"
           >
-            <source src="/src/assets/hero.mp4" type="video/mp4" />
+            <source src="/hero.mp4" type="video/mp4" />
           </video>
 
           {/* Dark Overlay */}
