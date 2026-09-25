@@ -84,6 +84,19 @@
     width: 300px;
     min-height: 350px
 }
+
+/* Mobile */
+@media (max-width: 600px) {
+  .cardProduct {
+    width: 90%;
+    max-width: 340px;
+    min-height: auto;
+  }
+
+  .boxContainerProducts {
+    padding: 0 12px;
+  }
+}
 .stars {
   display: flex;
   gap: 3px;
